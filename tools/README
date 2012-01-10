@@ -1,0 +1,17 @@
+This is a small project designed to take Wordpress entries and import them into toto.  All that is needed is toto and an exported XML file from your Wordpress blog. (toto is probably not needed)
+
+'import.rb' takes a command-line argument: the XML file to be imported into toto.
+
+toto currently only supports posts.  It does not support drafts, pages, or comments natively.  In order to preserve your comments, I'd recommend the Disqus plugin for Wordpress and exporting all of your comments to it. ( Scott: I have not tried this)
+
+this script expects an articles directory and writes out a default slugified post txt file in the articles directory.  At least for all the posts in the xml that the script is able to parse. It will tell you which posts it was unable to parse.  
+
+switched from rexml to hpricot, but don't remember why.  Had this laying around for about 6 months, when I was playing with scanty, and did all the xml parsing then, just took the skeleton and made it output to the slugified txt recently.
+
+toto and hpricot changes by Scott Stout (http://blog.gambits.org/) 
+
+original Written by Christopher Swenson (http://www.caswenson.com/)
+
+Released under the MIT License: http://www.opensource.org/licenses/mit-license.php
+
+http://github.com/skout23/toto_wordpress_import

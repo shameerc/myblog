@@ -1,0 +1,12 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    builder (3.0.0)
+    redcarpet (1.17.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  builder
+  redcarpet

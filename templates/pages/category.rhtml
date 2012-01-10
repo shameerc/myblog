@@ -1,0 +1,23 @@
+<ul>
+  <% 
+  if archives.length > 0 
+  category = @path.split('/')[1] 
+  %>
+    <% 
+    for entry in archives 
+      categories = entry.category.split('/')
+    if(categories.include?(category))
+    %>
+      <li>
+        <a href="<%= entry.path %>"><%= entry.title %></a>
+        <%= entry.summary %>
+      </li>
+    <% end 
+    end
+    %>
+  <% end %>
+</ul>
+
+<% categories.each do |category| %>
+<%=  category %> >>
+<% end %>

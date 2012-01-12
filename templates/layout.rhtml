@@ -80,9 +80,11 @@
         <div class="container">
           <a class="brand" href="/">My Blog</a>
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
+          <% path = @path.split[0]%>
+            <li <% if path=='index' %>class="active" <% end %>><a href="/">Home</a></li>
+            <li <% if path=='archives' %>class="active" <% end %>><a href="/archives">Archives</a></li>
+            <li <% if path=='about' %>class="active" <% end %>><a href="/about">About</a></li>
+            <li <% if path=='contact' %>class="active" <% end %>><a href="/contact">Contact</a></li>
           </ul>
         </div>
       </div>

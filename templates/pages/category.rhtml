@@ -1,19 +1,27 @@
-<ul>
+<section id="articles">
+<%
+category = @path.split('/')[1] 
+%>
+<h5>Articles under Category : <%= category %></h5>
   <% 
-  if archives.length > 0 
-  category = @path.split('/')[1] 
-  %>
-    <% 
     for entry in archives 
       categories = entry.category.split('/')
     if(categories.include?(category))
     %>
-      <li>
-        <a href="<%= entry.path %>"><%= entry.title %></a>
-        <%= entry.summary %>
-      </li>
-    <% end 
+    <article class="post">
+      <header>
+        <h1><a href="<%= entry.path %>"><%= entry.title %></a></h1>
+        <span class="date"><%= entry.date %></span>
+      </header>
+
+      <section class="content">
+        <%= entry.summary.gsub(/<\/?[^>]*>/, "")[0..300] %>
+      </section>
+      <div class="more"><a href="<%= entry.path %>">read on &raquo;</a></div>
+      <br />
+      <div><% entry.tags.each do |tag|%> <%= tag %> <% end %> </div>
+    </article>
+  <% 
     end
-    %>
-  <% end %>
-</ul>
+  end %>
+</section>

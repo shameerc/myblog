@@ -1,6 +1,7 @@
 <section id="articles">
+<% tag = @path.split('/')[1] %>
+<h5>Articles under Tag : <%= tag %></h5>
   <% 
-  tag = @path.split('/')[1] 
     for entry in archives 
       tags = entry.tags
     if(tags.include?(tag))

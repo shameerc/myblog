@@ -95,10 +95,10 @@ module Toto
     end
     
     def category route
-      index
+      archives
     end
     def tag
-      index
+      archives
     end
     def /
       self[:root]
@@ -126,9 +126,8 @@ module Toto
           end
         elsif respond_to?(path) 
           context[send(path, type), path.to_sym]
-        elsif respond_to?(path.split('/').first)
-          m = path.split('/').first 
-          context[archives(route * '-'), m]
+        elsif respond_to?(route[0])
+          context[archives(route[1]), route[0]]
         elsif (repo = @config[:github][:repos].grep(/#{path}/).first) &&
               !@config[:github][:user].empty?
           context[Repo.new(repo, @config), :repo]

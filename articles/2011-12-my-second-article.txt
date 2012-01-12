@@ -1,6 +1,6 @@
 title: My Second article 
 author: Shameer C
 date: 2011/12/15
-options: Options
+tags: first
 
 This is atest

@@ -97,13 +97,17 @@
           </div>
           <div class="span4">
             <h3>Categories</h3>
+            <ul>
             <% categories.cloud.each do |category| %>
-              <a href="<%= categories.path(category) %>" > <%=  category %> >></a><br />
+              <li><a href="<%= categories.path(category) %>" > <%=  category %> </a></li>
             <% end %>
-            <h3>Tag Cloud</h3>
+            </ul>
+            <h3>Tags</h3>
+            <ul>
             <% for nube in tags_cloud.snowball %>
-              <a href="<%= tags_cloud.path(nube) %>" ><%= nube %> >></a> <br />
+              <li><a href="<%= tags_cloud.path(nube) %>" ><%= nube %></a> </li>
             <% end %>
+            </ul>
           </div>
         </div>
       </div>

@@ -81,23 +81,12 @@ module Toto
     end
 
     def archives filter = ""
-      filter = {:date => filter} unless filter.is_a?(Hash)
       entries = ! self.articles.empty??
         self.articles.select do |a|
           filter !~ /^\d{4}/ || File.basename(a) =~ /^#{filter}/
         end.reverse.map do |article|
           Article.new article, @config
         end : []
-        
-        if !(search_tag = filter.delete(:tag)).nil?
-          entries = entries.select do |article|
-            !article[:tags].nil? && article[:tags].find{|tag| tag == search_tag}
-          end
-        elsif !(search = filter.delete(:category)).nil?
-          entries = entries.select do |article|
-            !article[:category].nil? && article[:category].find{|category| category == search}
-          end
-        end
       return :archives => Archives.new(entries, @config)
     end
     
@@ -137,10 +126,8 @@ module Toto
           end
         elsif respond_to?(path) 
           context[send(path, type), path.to_sym]
-        elsif(route.first == 'tag')
-          context[archives(:tag => route.last), :archives]
-        elsif(route.first == 'category')
-          context[archives(:tag => route.last), :archives]
+        elsif respond_to?(route[0])
+          context[archives(route[1]), route[0]]
         elsif (repo = @config[:github][:repos].grep(/#{path}/).first) &&
               !@config[:github][:user].empty?
           context[Repo.new(repo, @config), :repo]
@@ -398,7 +385,7 @@ module Toto
     end
     
     def path obj
-      '/tag/' + obj
+      '/tag/' + obj.to_s
     end
   end
   ## category class, need to add more features

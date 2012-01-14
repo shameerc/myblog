@@ -1,0 +1,7 @@
+title: My First article
+author: Shameer C
+date: 2011/12/15
+tags: first,article
+category: test/local
+
+This is atest

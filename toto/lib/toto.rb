@@ -140,7 +140,7 @@ module Toto
         elsif(route.first == 'tag')
           context[archives(:tag => route.last), :archives]
         elsif(route.first == 'category')
-          context[archives(:category => route.last), :archives]
+          context[archives(:tag => route.last), :archives]
         elsif (repo = @config[:github][:repos].grep(/#{path}/).first) &&
               !@config[:github][:user].empty?
           context[Repo.new(repo, @config), :repo]
@@ -398,7 +398,7 @@ module Toto
     end
     
     def path obj
-      '/tag/' + obj.first
+      '/tag/' + obj.to_s
     end
   end
   ## category class, need to add more features

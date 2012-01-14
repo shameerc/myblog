@@ -11,7 +11,7 @@
       </section>
       <div class="more"><a href="<%= article.path %>">read on &raquo;</a></div>
       <br />
-      <div><% article.tags.each do |tag|%> <%= tag %> <% end %> </div>
+      <div>Tags : <% article.tags.each do |tag|%> <a href="/tag/<%= tag %>"> <%= tag %></a> <% end %> </div>
     </article>
   <% end %>
 </section>

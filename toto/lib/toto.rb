@@ -81,12 +81,23 @@ module Toto
     end
 
     def archives filter = ""
+      filter = {:date => filter} unless filter.is_a?(Hash)
       entries = ! self.articles.empty??
         self.articles.select do |a|
           filter !~ /^\d{4}/ || File.basename(a) =~ /^#{filter}/
         end.reverse.map do |article|
           Article.new article, @config
         end : []
+        
+        if !(search_tag = filter.delete(:tag)).nil?
+          entries = entries.select do |article|
+            !article[:tags].nil? && article[:tags].find{|tag| tag == search_tag}
+          end
+        elsif !(search = filter.delete(:category)).nil?
+          entries = entries.select do |article|
+            !article[:category].nil? && article[:category].find{|category| category == search}
+          end
+        end
       return :archives => Archives.new(entries, @config)
     end
     
@@ -126,8 +137,10 @@ module Toto
           end
         elsif respond_to?(path) 
           context[send(path, type), path.to_sym]
-        elsif respond_to?(route[0])
-          context[archives(route[1]), route[0]]
+        elsif(route.first == 'tag')
+          context[archives(:tag => route.last), :archives]
+        elsif(route.first == 'category')
+          context[archives(:category => route.last), :archives]
         elsif (repo = @config[:github][:repos].grep(/#{path}/).first) &&
               !@config[:github][:user].empty?
           context[Repo.new(repo, @config), :repo]
@@ -293,7 +306,7 @@ module Toto
     def date()    @config[:date].call(self[:date])           end
     def author()  self[:author] || @config[:author]          end
     def to_html() self.load; super(:article, @config)        end
-    def category() self[:category] || ''                    end
+    def category() self[:category] || ''                     end
     def tags()    self[:tags] ? self[:tags].split(',').map { |i|  i.strip  } : '' end       
     
     alias :to_s to_html

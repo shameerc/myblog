@@ -394,7 +394,7 @@ module Toto
     end
     
     def snowball
-      @articles.map {|article| article.tags.to_s.split('/')}.flatten.uniq.sort
+      @articles.map {|article| article.tags}.flatten.uniq.sort
     end
     
     def path obj

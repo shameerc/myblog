@@ -385,7 +385,7 @@ module Toto
     end
     
     def path obj
-      '/tag/' + obj.to_s
+      '/tag/' + obj
     end
   end
   ## category class, need to add more features

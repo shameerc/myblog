@@ -13,13 +13,11 @@
 
     <!-- Le styles -->
     <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
     <style type="text/css">
       /* Override some defaults */
       html, body {
         background-color: #eee;
-      }
-      body {
-        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
       }
       .container > footer p {
         text-align: center; /* center align it with the container */
@@ -78,7 +76,7 @@
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="/">My Blog</a>
+          <h1><a class="brand" href="/">My Blog</a></h1>
           <ul class="nav">
           <% path = @path.split[0]%>
             <li <% if path=='index' %>class="active" <% end %>><a href="/">Home</a></li>
@@ -97,7 +95,7 @@
           <div class="span10">
             <%= yield %> 
           </div>
-          <div class="span4">
+          <div class="span4 sidebar">
             <h3>Categories</h3>
             <ul>
             <% categories.cloud.each do |category| %>

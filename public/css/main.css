@@ -108,3 +108,23 @@ body > footer {
   font-size: 18px;
   color: #888;
 }
+.tag{
+  background: #EEE;
+  padding: 1px 4px;
+}
+
+a.brand{
+  font-size : 26px !important;
+  padding-bottom: 8px !important;
+  color:#ddd !important;
+}
+a.brand:hover{
+  color:#fff !important;
+}
+.archives a{
+  font-size : 16px  ;
+  line-height : 1.4em;
+}
+.sidebar ul li{
+  line-height:1.2em;
+}

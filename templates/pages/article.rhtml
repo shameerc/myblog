@@ -2,13 +2,16 @@
   <header>
     <h1><%= title %></h1>
     <span class="date"><%= date %></span>
-    <span class="date"><%= category %></span>
   </header>
 
   <section class="content">
     <%= body %>
   </section>
-
+   <div class="tags"> Tags :
+      <% tags.each do |tag| %>
+        <span class="tag"><a href="/tag/<%= tag %>/"><%= tag %></a></span>
+      <% end %>
+  </div>
   <section class="comments">
     <% if @config[:disqus] %>
       <div id="disqus_thread"></div>

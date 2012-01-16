@@ -93,7 +93,6 @@ module Toto
     def article route
       Article.new("#{Paths[:articles]}/#{route.join('-')}.#{self[:ext]}", @config).load
     end
-    
 
     def /
       self[:root]
@@ -289,7 +288,9 @@ module Toto
     def author()  self[:author] || @config[:author]          end
     def to_html() self.load; super(:article, @config)        end
     def category() self[:category] || ''                     end
-    def tags()    self[:tags] ? self[:tags].split(',').map { |i|  i.strip  } : '' end       
+    def tags()    
+      self[:tags] ? self[:tags].to_s.split(',').collect(&:strip) : ''                               
+    end      
     
     alias :to_s to_html
   end

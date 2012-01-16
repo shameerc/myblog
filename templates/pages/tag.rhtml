@@ -16,8 +16,7 @@
         <%= entry.summary.gsub(/<\/?[^>]*>/, "")[0..300] %>
       </section>
       <div class="more"><a href="<%= entry.path %>">read on &raquo;</a></div>
-      <br />
-      <div><% entry.tags.each do |tag|%> <%= tag %> <% end %> </div>
+      <div><% entry.tags.each do |tag|%> <span class="tag"><a href="/tag/<%= tag %>/"><%= tag %></a></span> <% end %> </div>
     </article>
   <% 
     end
